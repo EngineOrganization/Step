@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:step/screens/sign_up.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Container(
@@ -86,15 +88,20 @@ class _LoginScreenState extends State<LoginScreen> {
             width: width * 0.2,
             margin: EdgeInsets.only(top: height * 0.05),
             child: ElevatedButton(
-              child: Text('Войти', style: GoogleFonts.jost(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
-              onPressed: () {},
+              child: Text('Войти', style: GoogleFonts.jost(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+              onPressed: () {
+                signIn();
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF2C2C2C)
               ),
             ),
           ),
           GestureDetector(
-            child: Text('Зарегистрироваться', style: GoogleFonts.jost(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),)
+            child: Text('Зарегистрироваться', style: GoogleFonts.jost(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpScreen()));
+            },
           ),
           Container(
             margin: EdgeInsets.only(top: height * 0.1),
