@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "194619597829",
+    "firebase_url": "https://engine-4a21e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "engine-4a21e",
+    "storage_bucket": "engine-4a21e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194619597829:android:7703dfebc8bfe340f2286c",
+        "android_client_info": {
+          "package_name": "com.engine.explore_mate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4r7Vuz7D-hQXWsLLL92ZNEssTP3ZXqv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194619597829:android:e52ba9dc50541833f2286c",
+        "android_client_info": {
+          "package_name": "com.engine.step"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4r7Vuz7D-hQXWsLLL92ZNEssTP3ZXqv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
