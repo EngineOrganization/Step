@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:step/screens/select_interests.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Container(
             margin: EdgeInsets.only(left: width * 0.2, right: width * 0.2, top: height * 0.05),
             child: TextField(
+              controller: nameController,
               keyboardType: TextInputType.text,
               cursorColor: Colors.black,
               style: GoogleFonts.jost(color: Colors.black),
@@ -58,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Container(
             margin: EdgeInsets.only(left: width * 0.2, right: width * 0.2, top: height * 0.03),
             child: TextField(
+              controller: surnameController,
               keyboardType: TextInputType.text,
               cursorColor: Colors.black,
               style: GoogleFonts.jost(color: Colors.black),
@@ -81,6 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Container(
             margin: EdgeInsets.only(left: width * 0.2, right: width * 0.2, top: height * 0.03),
             child: TextField(
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
               cursorColor: Colors.black,
               style: GoogleFonts.jost(color: Colors.black),
@@ -104,6 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Container(
             margin: EdgeInsets.only(left: width * 0.2, right: width * 0.2, top: height * 0.03),
             child: TextField(
+              controller: phoneController,
               keyboardType: TextInputType.phone,
               cursorColor: Colors.black,
               style: GoogleFonts.jost(color: Colors.black),
@@ -157,6 +162,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Container(
             margin: EdgeInsets.only(left: width * 0.2, right: width * 0.2, top: height * 0.03),
             child: TextField(
+              controller: passwordController,
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
               cursorColor: Colors.black,
@@ -199,10 +205,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void signUp() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final snapshot = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      User? user = snapshot.user;
+      DatabaseReference reference = FirebaseDatabase.instance.ref().child('users/' + user!.uid);
+      await reference.set({'name': nameController.text, 'surname': surnameController.text, 'phone': phoneController.text, 'email': emailController.text});
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectInterestsScreen()));
     } catch (e) {
       print(e);
